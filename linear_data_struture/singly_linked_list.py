@@ -184,11 +184,44 @@ class sll:
                     current.item,current.next.item=current.next.item,current.item
                 current=current.next 
             temp=temp.next
+    def remove_duplicate(self):
+        if self.is_empty():
+            return 'list is empty'
+        temp=self.start
+        while temp is not None:
+            current=temp 
+            while current.next is not None:
+                if current.next.item == temp.item:
+                    current.next=current.next.next
+                else:
+                    current=current.next
+            temp=temp.next 
+        return 'duplicated remove'
+    def remove_duplicated_item(self,item):
+        if self.is_empty():
+            return 'list is empty'
+        temp=self.start
+        #find first occurace of item 
+        while temp is not None:
+            if temp.item==item:
+               break
+            temp=temp.next
+        if temp is None:
+            return 'item not in list '
+        current=temp
+        while current.next is not None:
+            if current.next.item==item:
+                current.next=current.next.next
+            else:
+                current=current.next
+        return 'duplicated remove'
+        
+
+
    
 #testing the sll 
 
 # s1=sll()
-
 # s1.insert_at_start(100)
 # s1.insert_at_start(50)
 # s1.insert_at_last(12)
@@ -211,4 +244,11 @@ class sll:
 # s1.reverse()
 # s1.sort()
 # s1.sort_dec()
+# s1.insert_at_last(100)
+# s1.insert_at_last(12)
+# s1.insert_at_last(90)
+# s1.insert_at_start(100)
+# s1.print_list()
+# print('*')
+# s1.remove_duplicated_item(100)
 # s1.print_list()
