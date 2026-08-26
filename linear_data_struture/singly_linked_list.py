@@ -153,7 +153,38 @@ class sll:
         if last_index==0:
             return 'item not found'
         return last_index 
-
+    def reverse(self):
+        prev=None
+        temp =self.start
+        while temp is not None:
+            next_node=temp.next
+            temp.next=prev
+            prev=temp
+            temp=next_node
+        self.start=prev 
+    def sort_asc(self):
+        if self.is_empty():
+            return 'list is empty'
+        temp=self.start
+        while temp is not None:
+            current=self.start
+            while current.next is not None:
+                if current.item > current.next.item:
+                    current.item,current.next.item=current.next.item,current.item
+                current=current.next 
+            temp=temp.next
+    def sort_dec(self):
+        if self.is_empty():
+            return 'list is empty'
+        temp=self.start
+        while temp is not None:
+            current=self.start
+            while current.next is not None:
+                if current.item < current.next.item:
+                    current.item,current.next.item=current.next.item,current.item
+                current=current.next 
+            temp=temp.next
+   
 #testing the sll 
 
 # s1=sll()
@@ -177,15 +208,7 @@ class sll:
 # s1.print_list()
 # print(s1.find_first(50))
 # print(s1.find_last(50))
-
-
-
-
-
-
-
-
-
-
-        
-
+# s1.reverse()
+# s1.sort()
+# s1.sort_dec()
+# s1.print_list()
