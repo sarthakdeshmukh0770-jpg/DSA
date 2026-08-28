@@ -96,11 +96,11 @@ class dll:
         if temp.next is not None:
             temp.next.prev=temp.prev
         temp.prev.next=temp.next
-    def lenght(self):
+    def length(self):
         if self.is_empty():
             return 'list is empty'
         temp=self.start
-        count=1
+        count=0
         while temp is not None:
             count+=1
             temp=temp.next
@@ -167,3 +167,72 @@ class dll:
         if last_index==0:
             return 'item not found '
         return last_index
+    def reverse(self):
+        current = self.start
+        temp = None
+
+        while current is not None:
+            temp = current.prev
+            current.prev = current.next
+            current.next = temp
+            current = current.prev   # move forward (via old 'next', now in prev)
+
+        if temp is not None:
+            self.start = temp.prev
+    def sort_asc(self):
+        temp=self.start
+        while temp is not None:
+            current=self.start
+            while current.next is not None:
+                if current.item>current.next.item:
+                    current.item,current.next.item=current.next.item,current.item
+                current=current.next 
+            temp=temp.next
+    def sort_desc(self):
+        temp=self.start
+        while temp is not None:
+            current=self.start
+            while current.next is not None:
+                if current.item<current.next.item:
+                    current.item,current.next.item=current.next.item,current.item
+                current=current.next 
+            temp=temp.next
+    def remove_duplicated(self):
+        temp=self.start
+        while temp is not None:
+            current=temp
+            while current.next is not None:
+                if temp.item==current.next.item:
+                    current.next=current.next.next 
+                    if current.next is not None:
+                        current.next.prev = current
+                else:
+                    current = current.next
+            temp=temp.next
+        return 'remove duplicated' 
+    def remove_duplicated_item(self,item): 
+            if self.is_empty():
+                return 'list is empty'
+            temp=self.start
+            #find first occurace of item 
+            while temp is not None:
+                if temp.item==item:
+                   break
+                temp=temp.next
+            if temp is None:
+                return 'item not in list '
+            current=temp
+            while current.next is not None:
+                if current.next.item==item:
+                    current.next=current.next.next
+                    if current.next is not None:
+                        current.next.prev = current
+                else:
+                    current=current.next
+            return 'duplicated remove'
+
+    
+        
+    
+
+
