@@ -45,13 +45,22 @@ class dll:
         if temp.next is not None:
             n.next.prev=n
         temp.next=n
-    def print_all(self):
+    def print_all_asc(self):
         temp=self.start
         if self.is_empty():
             return 'list is empty'
         while temp is not None:
             print(temp.item)
             temp=temp.next
+    def print_all_desc(self):
+        temp=self.start
+        if self.is_empty():
+            return 'list is empty'
+        while temp.next is not None:
+            temp=temp.next
+        while temp is not None:
+            print(temp.item)
+            temp=temp.prev
     def search(self,item):
         temp=self.start
         if self.is_empty():
@@ -168,17 +177,14 @@ class dll:
             return 'item not found '
         return last_index
     def reverse(self):
-        current = self.start
-        temp = None
-
-        while current is not None:
-            temp = current.prev
-            current.prev = current.next
-            current.next = temp
-            current = current.prev   # move forward (via old 'next', now in prev)
-
-        if temp is not None:
-            self.start = temp.prev
+        temp=self.start
+        if self.is_empty():
+             return 'list is empty'
+        while temp.next is not None:
+            temp=temp.next
+        while temp is not None:
+            print(temp.item)
+            temp=temp.prev
     def sort_asc(self):
         temp=self.start
         while temp is not None:
